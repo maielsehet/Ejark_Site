@@ -51,8 +51,8 @@ The system allows users to log in as either Individual or Company, browse produc
 ## 🖥️ Tech Stack
 
 - Frontend: HTML, CSS, JavaScript  
-- Backend: (Add your backend tech here, e.g., Django / Node.js / PHP)  
-- Database: (MySQL / PostgreSQL / MongoDB – حسب ما استخدمتي)  
+- Backend: ()
+- Database: ()
 
 ---
 
@@ -69,6 +69,8 @@ The system allows users to log in as either Individual or Company, browse produc
 | Payment Methods Page | Choose payment method |
 | About Page | Platform description |
 | Contact Page | Contact and support |
+
+
 
 ---
 
