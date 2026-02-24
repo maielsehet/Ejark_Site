@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إيجارك - عرض الفئات</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <meta name="description" content="منصة إيجارك لتأجير كل ما تحتاجه من سيارات، عقارات، ملابس، أدوات وأثاث">
+  <meta name="keywords" content="تأجير, إيجار, سيارات, عقارات, ملابس, أدوات, أثاث">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Include SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  
+  <style>
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-right: 15px;
+  border-radius: 2000px !important;
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid #eee;
+  transition: var(--transition);
+}
+
+.search-container input {
+  flex: 1;
+  border: none;
+  outline: none;
+  border-radius: 2000px !important;
+  padding: 12px 20px;
+  font-size: 16px;
+  background: transparent;
+}
+
+.search-container input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 0.25rem var(--secondary);
+}
+
+.search-container .btn {
+  border-radius: 0 2000px 2000px 0 !important;
+  background: var(--accent-color);
+  color: white;
+  padding: 0 20px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.search-container .btn:hover {
+  background: var(--secondary);
+}
+    /* Filter Buttons */
+    .filter-btn {
+      border-radius: 50rem !important;
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    
+    .filter-btn:hover {
+      background: var(--primary);
+      border-color: var(--accent);
+    }
+    
+    .filter-btn.active {
+      background: var(--accent-color);
+      color: white;
+      border-color: var(--accent-color);
+    }
+    
+    .dropdown-menu {
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      border: none;
+      padding: 10px;
+    }
+    
+    .dropdown-item {
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+    
+    .dropdown-item:hover {
+      background: var(--primary);
+    }
+    
+    .dropdown-item.active {
+      background: var(--accent-color);
+      color: white;
+    }
+    
+    /* Product Cards */
+    .product-card {
+      transition: var(--transition);
+      margin-bottom: 24px;
+    }
+    
+    .product-card .card {
+      border: none;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      height: 100%;
+    }
+    
+    .product-card .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+    
+    .product-card img {
+      height: 220px;
+      object-fit: cover;
+      width: 100%;
+      transition: var(--transition);
+    }
+    
+    .product-card .card:hover img {
+      transform: scale(1.03);
+    }
+    
+    .product-card .card-body {
+      padding: 20px;
+    }
+    
+    .product-card .card-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--dark-color);
+      font-size: 1.1rem;
+    }
+    
+    .product-card .price {
+      font-weight: 700;
+      color: var(--accent-color);
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    
+    .product-card .location {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+    
+    .product-card .btn {
+      border-radius: var(--border-radius);
+      background: var(--accent-color);
+      border: none;
+      padding: 8px 16px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .product-card .btn:hover {
+      background: var(--secondary);
+    }
+
+
+.product-card {
+  padding-right: 10px; 
+  padding-left: 10px;
+}
+
+@media (min-width: 1200px) {
+  #productList {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+  .product-card {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+.product-card .card {
+  margin-bottom: 20px; 
+  border: 1px solid rgba(0,0,0,0.1); 
+}
+
+.product-card .card-body {
+  padding: 15px;
+}
+    
+    /* Rating Stars */
+    .rating {
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+    
+    /* Category Badges */
+    .category-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background:var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 50rem;
+      font-size: 0.8rem;
+      z-index: 2;
+    }
+    
+    /* Request Form */
+    #requestForm {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      border: none;
+    }
+    
+    #requestForm .card-header {
+      font-weight: 700;
+    }
+    
+    /* FAB Button */
+  /* FAB Button */
+.fab-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px; /* تغيير من right إلى left */
+  background: var(--accent-color);
+  color: white;
+  font-size: 28px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px var(--primary);
+  z-index: 99;
+  transition: var(--transition);
+}
+.fab-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px var(--secondary) ;
+ }
+    
+/* No Results */
+ #noResults {
+      border-radius: var(--border-radius);
+      background: white;
+      box-shadow: var(--box-shadow);
+      border: none;
+  }
+    
+
+
+
+ /* Responsive Adjustments */
+
+
+@media (max-width: 992px) {
+  .search-container {
+    max-width: 100%;
+    margin: 10px auto;
+  }
+
+  .search-container input {
+    font-size: 15px;
+    padding: 10px 15px;
+  }
+
+  .filter-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .product-card img {
+    height: 200px;
+  }
+
+  .product-card .card-body {
+    padding: 12px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    border-radius: 12px !important;
+    padding: 8px;
+  }
+
+  .search-container input {
+    width: 100%;
+    border-radius: 12px !important;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .search-container .btn {
+    width: 100%;
+    border-radius: 12px !important;
+    padding: 10px;
+  }
+
+  .filter-btn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .product-card img {
+    height: 180px;
+  }
+
+  .product-card .card-body {
+    padding: 10px;
+  }
+
+  .product-card .card-title {
+    font-size: 1rem;
+  }
+
+  .product-card .price {
+    font-size: 1.1rem;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .filter-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .product-card img {
+    height: 160px;
+  }
+
+  .product-card .card-title {
+    font-size: 0.95rem;
+  }
+
+  .product-card .price {
+    font-size: 1rem;
+  }
+
+  .fab-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    bottom: 20px;
+    left: 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <header id="header" class="header sticky-top">
+    <!-- Top Bar -->
+    <div class="top-bar py-2">
+      <div class="container-fluid container-xl">
+        <div class="row align-items-center">
+          <div class="col-lg-4 d-none d-lg-flex">
+            <!-- Empty for alignment -->
+          </div>
+
+          <div class="col-lg-4 d-none d-lg-block">
+            <!-- Empty for alignment -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+      <div class="container-fluid container-xl">
+        <div class="d-flex py-3 align-items-center justify-content-between">
+          <!-- Logo -->
+          <!-- <a href="index.html" class="logo d-flex align-items-center"> -->
+            <h1 class="sitename">
+              <img src="assets/img/logo1.png" alt="شعار إيجارك" class="logo_site">
+            </h1>
+          <!-- </a> -->
+          
+          <!-- Search
+          <form class="search-form desktop-search-form">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="ابحث عن المنتجات">
+              <button class="btn" type="submit">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form> -->
+
+          <!-- Actions -->
+          <div class="header-actions d-flex align-items-center justify-content-end">
+            <!-- Mobile Search Toggle -->
+            <button class="header-action-btn mobile-search-toggle d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSearch" aria-expanded="false" aria-controls="mobileSearch">
+              <i class="bi bi-search"></i>
+            </button>
+
+            <!-- Account -->
+            <div class="dropdown account-dropdown">
+              <button class="header-action-btn" data-bs-toggle="dropdown">
+                <i class="bi bi-person"></i>
+              </button>
+              <div class="dropdown-menu">
+                <div class="dropdown-header">
+                  <h6>مرحبًا بك في <span class="sitename">إيجارك</span></h6>
+                  <p class="mb-0">الوصول إلى الحساب وإدارة الطلبات</p>
+                </div>
+                <div class="dropdown-body">
+                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                    <i class="bi bi-person-circle me-2"></i>
+                    <span>ملفي الشخصي</span>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                    <i class="bi bi-bag-check me-2"></i>
+                    <span>طلباتي</span>
+                  </a>
+                </div>
+                <div class="dropdown-footer">
+                  <a href="register.html" class="btn btn-primary w-100 mb-2">تسجيل الدخول</a>
+                  <a href="login.html" class="btn btn-outline-primary w-100">إنشاء حساب</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Navigation Toggle -->
+            <i class="mobile-nav-toggle d-xl-none bi bi-list me-0"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="header-nav">
+      <div class="container-fluid container-xl position-relative">
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="category.html" class="active">الفئات</a></li>
+              <li><a href="needs.html">طلبات العملاء</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Mobile Search Form -->
+    <div class="collapse" id="mobileSearch">
+      <div class="container">
+        <form class="search-form">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="ابحث عن المنتجات">
+            <button class="btn" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </header>
+
+
+<!--==========================================================-->
+
+
+
+<!-- Main Content -->
+
+  <main class="py-4">
+      <!-- Search and Filter Section -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <div class="d-flex flex-column flex-lg-row gap-4 align-items-center justify-content-between">
+            <!-- Search Box -->
+            <div class="search-container flex-grow-1 w-100">
+              <div class="input-group">
+                <input type="text" id="searchInput" class="form-control border-start-0" placeholder="ابحث عن المنتجات أو الموقع...">
+                
+              </div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="d-flex gap-2 filter-buttons w-100 w-lg-auto">
+              <!-- Category Filter -->
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary filter-btn" data-bs-toggle="dropdown">
+                  <i class="bi bi-grid"></i>
+                  <span>الفئات</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end text-end">
+                  <li><h6 class="dropdown-header">تصفية حسب الفئة</h6></li>
+                  <li><a class="dropdown-item active" href="#" data-category="">كل الفئات</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#" data-category="سيارات"><i class="bi bi-car-front me-2"></i> سيارات</a></li>
+                  <li><a class="dropdown-item" href="#" data-category="عقارات"><i class="bi bi-house me-2"></i> عقارات ومساكن</a></li>
+                  <li><a class="dropdown-item" href="#" data-category="أدوات"><i class="bi bi-tools me-2"></i> أدوات ومعدات</a></li>
+                  <li><a class="dropdown-item" href="#" data-category="ملابس"><i class="bi bi-tshirt me-2"></i> ملابس</a></li>
+                  <li><a class="dropdown-item" href="#" data-category="أثاث"><i class="bi bi-lamp me-2"></i> أثاث</a></li>
+                </ul>
+              </div>
+              
+              <!-- Sort Button -->
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary filter-btn" data-bs-toggle="dropdown">
+                  <i class="bi bi-filter"></i>
+                  <span>ترتيب</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end text-end">
+                  <li><h6 class="dropdown-header">ترتيب حسب</h6></li>
+                   <li><a class="dropdown-item sort" href="#" data-sort="orginal">الترتيب الاولي</a></li>
+                  <li><a class="dropdown-item sort" href="#" data-sort="asc">الأقل سعراً</a></li>
+                  <li><a class="dropdown-item sort" href="#" data-sort="desc">الأعلى سعراً</a></li>
+                  <li><hr class="dropdown-divider"></li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="row" id="productList"  data-aos="fade-up">
+        <!-- Product Card 1 -->
+        <div class="col-md-6 col-lg-4 col-xl-3 product-card" data-category="سيارات" data-name="تويوتا كورولا" data-location="القاهرة" data-price="150">
+          <div class="card h-100">
+            <span class="category-badge">سيارات</span>
+            <img src="assets/img/product/car.png" class="card-img-top" alt="تويوتا كورولا">
+            <div class="card-body">
+              <h5 class="card-title">تويوتا كورولا 2022</h5>
+              <p class="price">150 ج.م/اليوم</p>
+              <p class="location"><i class="bi bi-geo-alt"></i> القاهرة، مصر</p>
+              <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <span class="text-muted ms-2">(24)</span>
+              </div>
+              <a href="product-details.html" class="btn btn-primary w-100">عرض التفاصيل</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div class="col-md-6 col-lg-4 col-xl-3 product-card" data-category="ملابس" data-name="فستان سهرة" data-location="الإسكندرية" data-price="180"  data-aos="fade-up">
+          <div class="card h-100">
+            <span class="category-badge">ملابس</span>
+            <img src="assets/img/product/Dress.jpg" class="card-img-top" alt="فستان سهرة">
+            <div class="card-body">
+              <h5 class="card-title">فستان سهرة أنيق</h5>
+              <p class="price">180 ج.م/اليوم</p>
+              <p class="location"><i class="bi bi-geo-alt"></i> الإسكندرية، مصر</p>
+              <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i>
+                <span class="text-muted ms-2">(18)</span>
+              </div>
+              <a href="product-details.html" class="btn btn-primary w-100">عرض التفاصيل</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 3 -->
+        <div class="col-md-6 col-lg-4 col-xl-3 product-card" data-category="عقارات" data-name="شقة فاخرة" data-location="الرياض" data-price="500"  data-aos="fade-up">
+          <div class="card h-100">
+            <span class="category-badge">عقارات</span>
+            <img src="assets/img/product/House.jpg" class="card-img-top" alt="شقة فاخرة">
+            <div class="card-body">
+              <h5 class="card-title">شقة فاخرة 3 غرف</h5>
+              <p class="price">500 ج.م/اليوم</p>
+              <p class="location"><i class="bi bi-geo-alt"></i> مصر - الوادي الجديد</p>
+              <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <span class="text-muted ms-2">(32)</span>
+              </div>
+              <a href="product-details.html" class="btn btn-primary w-100">عرض التفاصيل</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 4 -->
+        <div class="col-md-6 col-lg-4 col-xl-3 product-card" data-category="أدوات" data-name="كاميرا احترافية" data-location="جدة" data-price="250"  data-aos="fade-up">
+          <div class="card h-100">
+            <span class="category-badge">أدوات</span>
+            <img src="assets/img/product/camera.webp" class="card-img-top" alt="كاميرا احترافية">
+            <div class="card-body">
+              <h5 class="card-title">كاميرا احترافية Canon</h5>
+              <p class="price">250 ج.م/اليوم</p>
+              <p class="location"><i class="bi bi-geo-alt"></i> مصر - الجيزه</p>
+              <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i>
+                <span class="text-muted ms-2">(14)</span>
+              </div>
+              <a href="product-details.html" class="btn btn-primary w-100">عرض التفاصيل</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 5 -->
+        <div class="col-md-6 col-lg-4 col-xl-3 product-card" data-category="أثاث" data-name="طقم كنب" data-location="القاهرة" data-price="120"  data-aos="fade-up">
+          <div class="card h-100">
+            <span class="category-badge">أثاث</span>
+            <img src="assets/img/OIP.webp" class="card-img-top" alt="طقم كنب">
+            <div class="card-body">
+              <h5 class="card-title">طقم كنب فاخر</h5>
+              <p class="price">120 ج.م/اليوم</p>
+              <p class="location"><i class="bi bi-geo-alt"></i> القاهرة، مصر</p>
+              <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <span class="text-muted ms-2">(21)</span>
+              </div>
+              <a href="product-details.html" class="btn btn-primary w-100">عرض التفاصيل</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 6 -->
+        <div class="col-md-6 col-lg-4 col-xl-3 product-card" data-category="سيارات" data-name="هيونداي النترا" data-location="الرياض" data-price="200"  data-aos="fade-up">
+          <div class="card h-100">
+            <span class="category-badge">سيارات</span>
+            <img src="assets/img/hundi.jpg" class="card-img-top" alt="هيونداي النترا">
+            <div class="card-body">
+              <h5 class="card-title">هيونداي النترا 2021</h5>
+              <p class="price">200 ج.م/اليوم</p>
+              <p class="location"><i class="bi bi-geo-alt"></i>مصر - البحيرة</p>
+              <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <span class="text-muted ms-2">(28)</span>
+              </div>
+              <a href="product-details.html" class="btn btn-primary w-100">عرض التفاصيل</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 7 -->
+        <div class="col-md-6 col-lg-4 col-xl-3 product-card" data-category="أدوات" data-name="مثقاب كهربائي" data-location="جدة" data-price="80"  data-aos="fade-up">
+          <div class="card h-100">
+            <span class="category-badge">أدوات</span>
+            <img src="assets/img/mensher.jpg" class="card-img-top" alt="مثقاب كهربائي">
+            <div class="card-body">
+              <h5 class="card-title">مثقاب كهربائي محترف</h5>
+              <p class="price">80 ج.م/اليوم</p>
+              <p class="location"><i class="bi bi-geo-alt"></i> مصر - البحيرة</p>
+              <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <i class="bi bi-star"></i>
+                <span class="text-muted ms-2">(9)</span>
+              </div>
+              <a href="product-details.html" class="btn btn-primary w-100">عرض التفاصيل</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 8 -->
+        <div class="col-md-6 col-lg-4 col-xl-3 product-card" data-category="عقارات" data-name="فيلا فاخرة" data-location="الإسكندرية" data-price="800"  data-aos="fade-up">
+          <div class="card h-100">
+            <span class="category-badge">عقارات</span>
+            <img src="assets/img/vila.jpg" class="card-img-top" alt="فيلا فاخرة">
+            <div class="card-body">
+              <h5 class="card-title">فيلا فاخرة على البحر</h5>
+              <p class="price">800 ج.م/اليوم</p>
+              <p class="location"><i class="bi bi-geo-alt"></i> الإسكندرية، مصر</p>
+              <div class="rating mb-3">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i>
+                <span class="text-muted ms-2">(12)</span>
+              </div>
+              <a href="product-details.html" class="btn btn-primary w-100">عرض التفاصيل</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="alert alert-warning text-center py-4" style="display:none;">
+          <i class="bi bi-exclamation-circle fs-4"></i>
+          <h5 class="mt-2">لا توجد نتائج مطابقة</h5>
+          <p class="mb-0">حاول تغيير كلمات البحث أو معايير الفلترة</p>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <!-- <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">السابق</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">التالي</a>
+          </li>
+        </ul>
+
+      </nav> -->
+
+    <!-- Product Request Form - New Style -->
+<div id="requestForm" class="modern-request-form">
+  <div class="form-header">
+    <h3><i class="bi bi-box-seam me-2"></i>طلب منتج غير متوفر</h3>
+    <p class="subtitle">قم بطلب المنتج الذي ترغب به</p>
+  </div>
+  
+  <form class="modern-form">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="form-group">
+          <label for="productName"><i class="bi bi-tag me-2"></i>اسم المنتج المطلوب</label>
+          <input type="text" id="productName" class="form-control" required>
+          <div class="invalid-feedback">يرجى إدخال اسم المنتج</div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 mb-3">
+        <div class="form-group">
+          <label for="productCategory"><i class="bi bi-grid me-2"></i>الفئة</label>
+          <select id="productCategory" class="form-control" required>
+            <option value="سيارات">سيارات</option>
+            <option value="عقارات">عقارات</option>
+            <option value="أدوات">أدوات</option>
+            <option value="ملابس">ملابس</option>
+            <option value="أثاث">أثاث</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+          <div class="invalid-feedback">يرجى اختيار الفئة</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group mb-3">
+      <label for="productDescription"><i class="bi bi-card-text me-2"></i>وصف المنتج المطلوب</label>
+      <textarea id="productDescription" class="form-control" rows="3" required></textarea>
+      <div class="invalid-feedback">يرجى إدخال وصف للمنتج</div>
+    </div>
+    
+    <div class="form-group mb-3">
+      <label for="productLocation"><i class="bi bi-geo-alt me-2"></i>موقعك</label>
+      <input type="text" id="productLocation" class="form-control" required>
+      <div class="invalid-feedback">يرجى إدخال موقعك</div>
+    </div>
+    
+    <div class="form-group mb-4">
+      <label><i class="bi bi-calendar3 me-2"></i>مدة التأجير المتوقعة</label>
+      <div class="input-group">
+        <input type="number" class="form-control" placeholder="عدد الأيام">
+        
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">
+        <i class="bi bi-send-fill me-2"></i>إرسال الطلب
+      </button>
+    </div>
+  </form>
+</div>
+
+<style>
+  /* Modern Form Styles */
+  .modern-request-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px var(--primary);
+    display: none; /* Keep original display behavior */
+  }
+  
+  .form-header {
+    text-align: right;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1rem;
+  }
+  
+  .form-header h3 {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    color: #666;
+    font-size: 0.95rem;
+  }
+  
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #444;
+    font-weight: 500;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f9f9f9;
+    transition: all 0.3s;
+    font-size: 15px;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px var(--primary);
+    outline: none;
+  }
+  
+  textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
+  }
+  
+  .input-group {
+    display: flex;
+  }
+  
+  .input-group .form-control {
+    border-radius: 6px 0 0 6px !important;
+  }
+  
+  .input-group-text {
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    border-left: none;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    border-radius: 0 6px 6px 0 !important;
+  }
+  
+  /* Invalid Feedback */
+  .invalid-feedback {
+    display: none;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .submit-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .modern-request-form {
+      padding: 1.5rem;
+    }
+    
+    .form-control {
+      padding: 10px 12px;
+    }
+  }
+</style>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('#requestForm form');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      let isValid = true;
+      
+      // Validate all required fields
+      const requiredFields = form.querySelectorAll('[required]');
+      requiredFields.forEach(field => {
+        const feedback = field.parentElement.querySelector('.invalid-feedback');
+        
+        if (!field.value) {
+          field.style.borderColor = '#dc3545';
+          feedback.style.display = 'block';
+          isValid = false;
+        } else {
+          field.style.borderColor = '#ced4da';
+          feedback.style.display = 'none';
+        }
+      });
+      
+      if (isValid) {
+        // Form is valid, submit it
+   Swal.fire({
+  title: 'نجاح',
+  html: '<div style="font-size: 18px;"> سيتم مراجعه هذه البيانات - تم إرسال الطلب بنجاح!</div>',
+  icon: 'success',
+  iconColor: '#28a745',
+  confirmButtonText: 'حسناً',
+  confirmButtonColor: '#3085d6',
+  customClass: {
+    title: 'arabic-title',
+    content: 'arabic-text'
+  }
+});
+        
+        // 1. إعادة تحميل الصفحة أولاً
+        setTimeout(() => {
+          window.location.reload();
+          
+          // 2. بعد التحميل، توجيه إلى صفحة الاحتياجات مع البيانات
+          setTimeout(() => {
+            // يمكنك استخدام إحدى هذه الطرق:
+            
+         
+            const formData = {};
+            inputs.forEach(input => {
+              formData[input.name] = input.value;
+            });
+            localStorage.setItem('requestFormData', JSON.stringify(formData));
+            
+          
+            
+            window.location.href = 'اneeds.html';
+         
+          }, 100); // تأخير بسيط للتأكد من اكتمال التحميل
+        }, 500);
+        
+        // Reset floating labels
+        const labels = form.querySelectorAll('label');
+        labels.forEach(label => {
+          label.style.transform = 'none';
+          label.style.color = '#6c757d';
+        });
+      }
+    });
+    
+    // بقية الكود كما هو...
+    const inputs = form.querySelectorAll('.form-control, .form-select');
+    // ... الكود السابق للتعامل مع الحقول والعناصر
+  });
+</script>
+  </main>
+
+  <footer id="footer" class="footer dark-background"  data-aos="fade-up">
+    <div class="footer-main">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-widget footer-about">
+              <a href="index.html" class="logo">
+                <span class="sitename"  data-aos="fade-up">إيجارك</span>
+              </a>
+              <p  data-aos="fade-up">منصة إيجارك هي الحل الأمثل لتأجير كل ما تحتاجه أو كسب المال من تأجير ممتلكاتك. نوفر تجربة آمنة وسهلة للجميع.</p>
+
+              <div class="social-links mt-4">
+                <h5  data-aos="fade-up">تواصل معنا</h5>
+                <div class="social-icons">
+                  <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="#" aria-label="Snapchat"><i class="bi bi-snapchat"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 col-sm-6">
+            <div class="footer-widget">
+              <h4  data-aos="fade-up">تصفح</h4>
+              <ul class="footer-links">
+                <li><a href="category.html"  data-aos="fade-up">السيارات</a></li>
+                <li><a href="category.html"  data-aos="fade-up">الشقق والسكن</a></li>
+                <li><a href="category.html"  data-aos="fade-up">الملابس</a></li>
+                <li><a href="category.html"  data-aos="fade-up">الأدوات</a></li>
+                <li><a href="category.html"  data-aos="fade-up">الأثاث</a></li>
+                <li><a href="category.html"  data-aos="fade-up">عروض خاصة</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 col-sm-6">
+            <div class="footer-widget">
+              <h4>الدعم</h4>
+              <ul class="footer-links">
+                <li><a href="support.html">الأسئلة الشائعة</a></li>
+                <li><a href="account.html">حجوزاتي</a></li>
+                <li><a href="shiping-info.html">شروط التأجير</a></li>
+                <li><a href="return-policy.html">سياسة الإرجاع</a></li>
+                <li><a href="#">الأسعار</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-widget">
+              <h4>معلومات الاتصال</h4>
+              <div class="footer-contact">
+                <div class="contact-item">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>الرياض، المملكة العربية السعودية</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-telephone"></i>
+                  <span>+966 12 345 6789</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-envelope"></i>
+                  <span>info@ijarak.com</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-clock"></i>
+                  <span>الأحد-الخميس: 8ص-5م<br>الجمعة-السبت: مغلق</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row gy-3 align-items-center">
+          <div class="col-lg-6 col-md-12">
+            <div class="copyright">
+              <p>© <span>حقوق النشر</span> <strong class="sitename">إيجارك</strong>. جميع الحقوق محفوظة.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-12">
+            <div class="d-flex flex-wrap justify-content-lg-end justify-content-center align-items-center gap-4">
+              <div class="payment-methods">
+                <div class="payment-icons">
+                  <i class="bi bi-credit-card" aria-label="Credit Card"></i>
+                  <i class="bi bi-paypal" aria-label="PayPal"></i>
+                  <i class="bi bi-apple" aria-label="Apple Pay"></i>
+                  <i class="bi bi-google" aria-label="Google Pay"></i>
+                  <i class="bi bi-cash" aria-label="Cash on Delivery"></i>
+                </div>
+              </div>
+
+              <div class="legal-links">
+                <a href="tos.html">الشروط</a>
+                <a href="privacy.html">الخصوصية</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- FAB Button -->
+  <a href="add_product.html" class="fab-btn">
+    <i class="bi bi-plus"></i>
+  </a>
+
+ 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('searchInput');
+  const products = document.querySelectorAll('.product-card');
+  const noResults = document.getElementById('noResults');
+  const requestForm = document.getElementById('requestForm');
+  const categoryItems = document.querySelectorAll('[data-category]');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const paginationContainer = document.querySelector('.pagination');
+  const filterContainer = document.querySelector('.filter-container');
+
+  // متغير لتتبع حالة الفلترة
+  let filteringEnabled = true;
+
+  // إضافة حالة Active للزر المختار
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (!filteringEnabled) return;
+      filterButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      filterProducts();
+    });
+  });
+
+  // إعادة تعيين الفلاتر
+  function resetFilters() {
+    if (!filteringEnabled) return;
+    searchInput.value = '';
+    categoryItems.forEach(i => i.classList.remove('active'));
+    filterButtons.forEach(b => b.classList.remove('active'));
+    filterProducts();
+  }
+
+function filterProducts() {
+    if (!filteringEnabled) return;
+    
+    const searchText = searchInput.value.toLowerCase();
+    let visibleCount = 0;
+    let activeCategory = '';
+
+    const hasSearch = searchText.trim().length > 0;
+    const hasActiveCategory = document.querySelector('[data-category].active') !== null;
+
+    if (hasActiveCategory) {
+      const activeItem = document.querySelector('[data-category].active');
+      activeCategory = activeItem.dataset.category || '';
+    }
+
+    products.forEach(product => {
+      const name = product.dataset.name.toLowerCase();
+      const location = product.dataset.location.toLowerCase();
+      const category = product.dataset.category;
+
+      if (!hasSearch && !hasActiveCategory) {
+        product.style.display = "block";
+        visibleCount++;
+        return;
+      }
+
+      const matchesSearch = !hasSearch || name.includes(searchText) || location.includes(searchText);
+      const matchesCategory = !activeCategory || activeCategory === category;
+
+      if (matchesSearch && matchesCategory) {
+        product.style.display = "block";
+        visibleCount++;
+      } else {
+        product.style.display = "none";
+      }
+    });
+
+    if (visibleCount === 0 && (hasSearch || hasActiveCategory)) {
+      noResults.style.display = "block";
+      requestForm.style.display = "block";
+      if (paginationContainer) paginationContainer.style.display = "none";
+      if (filterContainer) filterContainer.style.display = "none";
+    } else {
+      noResults.style.display = "none";
+      requestForm.style.display = "none";
+      if (paginationContainer) paginationContainer.style.display = "flex";
+      if (filterContainer) filterContainer.style.display = "block";
+    }
+  }
+
+  // اختيار الفئة
+  categoryItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      if (!filteringEnabled) return;
+      e.preventDefault();
+      categoryItems.forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+      filterProducts();
+    });
+  });
+
+  // البحث
+  searchInput.addEventListener('input', function() {
+    if (filteringEnabled) filterProducts();
+  });
+
+  // فرز المنتجات بالسعر
+// حفظ الترتيب الأصلي للمنتجات
+const productsContainer = document.getElementById('productList');
+const originalProducts = Array.from(productsContainer.querySelectorAll('.product-card'));
+
+// فرز المنتجات بالسعر أو العودة للترتيب الأصلي
+document.querySelectorAll('.dropdown-item.sort').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const sortType = this.dataset.sort;
+    const productsArr = Array.from(productsContainer.querySelectorAll('.product-card'));
+
+    if (sortType === 'orginal') {
+      // إعادة الترتيب الأصلي
+      originalProducts.forEach(p => productsContainer.appendChild(p));
+      return;
+    }
+
+    productsArr.sort((a, b) => {
+      const priceA = parseFloat(a.dataset.price);
+      const priceB = parseFloat(b.dataset.price);
+      return sortType === 'asc' ? priceA - priceB : priceB - priceA;
+    });
+
+    productsArr.forEach(p => productsContainer.appendChild(p));
+  });
+});
+
+  // منع الفلترة عند الضغط على المنتج
+  products.forEach(product => {
+    product.addEventListener('click', function(e) {
+      // إذا كان الضغط على زر التفاصيل، لا نمنع الفلترة
+      if (e.target.closest('.btn.btn-primary')) return;
+      
+      // تعطيل الفلترة مؤقتاً
+      filteringEnabled = false;
+      
+      // إعادة عرض كل المنتجات
+      products.forEach(p => p.style.display = "block");
+      noResults.style.display = "none";
+      requestForm.style.display = "none";
+      if (paginationContainer) paginationContainer.style.display = "flex";
+      if (filterContainer) filterContainer.style.display = "block";
+      
+      // إعادة تمكين الفلترة بعد 300 مللي ثانية (يمكن تعديل هذه القيمة)
+      setTimeout(() => {
+        filteringEnabled = true;
+      }, 300);
+    });
+
+    // فتح صفحة المنتج من زر التفاصيل فقط
+    const detailsBtn = product.querySelector('.btn.btn-primary');
+    if (detailsBtn) {
+      detailsBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        const link = product.querySelector('a');
+        if (link) window.location.href = link.href;
+      });
+    }
+  });
+
+  // عرض كل المنتجات مبدئيًا
+  filterProducts();
+
+  // إضافة انيميشن
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true
+  });
+});
+</script>
+
+
+<!-- Include SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

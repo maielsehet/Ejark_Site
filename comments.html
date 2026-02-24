@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+   
+    <title>التعليقات - إيجارك</title>
+     <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/drift-zoom/drift-basic.css" rel="stylesheet">
+
+  <!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+    <style>
+      
+        .comment-page {
+            padding: 4rem 0;
+        }
+        .request-details {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .comments-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+        }
+        .comment {
+            border-right: 3px solid var(--secondary);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--gray-light);
+            border-radius: 8px;
+        }
+
+
+        .comment-page {
+  padding: 3rem 0;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.request-details {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+}
+
+.request-details:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+}
+
+.comments-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.comment {
+  border-right: 4px solid var(--primary, #4361ee);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fdfdfd;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.comment:hover {
+  background: #fafafa;
+  transform: translateX(-3px);
+}
+
+#comment-form .form-control {
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #ddd;
+}
+
+#comment-form .btn {
+  border-radius:16px;
+  background: linear-gradient(135deg, var(--primary, #4361ee), var(--primary-dark, #3a56d4));
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#comment-form .btn:hover {
+  background: var(--secondary);
+}
+
+
+#comment-form .form-control {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  resize: none; /* optional: stops resizing handle */
+}
+
+#comment-form .btn {
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+  max-width:fit-content ;
+  position: center ;
+}
+#comment-form .btn:hover {
+  background: var(--secondary);
+}
+
+
+#comment-form {
+  text-align: center; /* centers inline elements like the button */
+}
+
+#comment-form .btn {
+  max-width: fit-content; /* shrink to text size */
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#comment-form .btn:hover {
+  background: var(--secondary);
+}
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+   <header id="header" class="header sticky-top">
+    <!-- Top Bar -->
+    <div class="top-bar py-2">
+      <div class="container-fluid container-xl">
+        <div class="row align-items-center">
+          <div class="col-lg-4 d-none d-lg-flex">
+          </div>
+
+          <div class="col-lg-4 col-md-12 text-center">
+            <div class="announcement-slider swiper init-swiper">
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-none d-lg-block">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+      <div class="container-fluid container-xl">
+        <div class="d-flex py-3 align-items-center justify-content-between">
+
+          <!-- Logo -->
+          <!-- <a href="index.html" class="logo d-flex align-items-center"> -->
+            <h1 class="sitename">
+              <img src="assets/img/logo1.png" alt="شعار الموقع" class="logo_site">
+            </h1>
+          <!-- </a> -->
+
+          <!-- Search -->
+          <form class="search-form desktop-search-form">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="ابحث عن المنتجات">
+              <button class="btn" type="submit">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+
+          <!-- Actions -->
+          <div class="header-actions d-flex align-items-center justify-content-end">
+
+            <!-- Mobile Search Toggle -->
+            <button class="header-action-btn mobile-search-toggle d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSearch" aria-expanded="false" aria-controls="mobileSearch">
+              <i class="bi bi-search"></i>
+            </button>
+
+            <!-- Account -->
+            <div class="dropdown account-dropdown">
+              <button class="header-action-btn" data-bs-toggle="dropdown">
+                <i class="bi bi-person"></i>
+              </button>
+              <div class="dropdown-menu">
+                <div class="dropdown-header">
+                  <h6>مرحبًا بك في <span class="sitename">إيجارك</span></h6>
+                  <p class="mb-0">الوصول إلى الحساب وإدارة الطلبات</p>
+                </div>
+                <div class="dropdown-body">
+                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                    <i class="bi bi-person-circle me-2"></i>
+                    <span>ملفي الشخصي</span>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                    <i class="bi bi-bag-check me-2"></i>
+                    <span>لوحة التحكم</span>
+                  </a>
+                </div>
+                <div class="dropdown-footer">
+                  <a href="register.html" class="btn btn-primary w-100 mb-2">إنشاء حساب</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Navigation Toggle -->
+            <i class="mobile-nav-toggle d-xl-none bi bi-list me-0"></i>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="header-nav">
+      <div class="container-fluid container-xl position-relative">
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="category.html">الفئات</a></li>
+              <li><a href="needs.html">طلبات العملاء</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Mobile Search Form -->
+    <div class="collapse" id="mobileSearch">
+      <div class="container">
+        <form class="search-form">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="ابحث عن المنتجات">
+            <button class="btn" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- في قسم المحتوى الرئيسي -->
+
+
+
+        
+  <main id="main" class="main">
+    <section class="section requests-section py-5">
+      <div class="container">
+     
+
+        <!-- Slider Container -->
+        <div class="requests-slider swiper init-swiper">
+          <div class="swiper-wrapper" id="requestsContainer">
+            <!-- Cards will be added dynamically by JavaScript -->
+          </div>
+          
+          <!-- Navigation buttons -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+    <main class="comment-page">
+        <div class="container">
+            <div class="request-details">
+                <h2 id="request-title"></h2>
+                <p id="request-description"></p>
+                <div class="d-flex justify-content-between mt-3">
+                    <span id="request-location"></span>
+                    <span id="request-period"></span>
+                </div>
+            </div>
+
+            <div class="comments-section">
+                <h3>التعليقات</h3>
+                <div id="comments-container"></div>
+                
+<form id="comment-form" class="mt-4 text-center">
+  <div class="mb-3">
+    <textarea id="comment-input" class="form-control" placeholder="أضف تعليقك..." rows="3" required></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">إرسال</button>
+</form>
+
+
+            </div>
+        </div>
+    </main>
+
+<footer id="footer" class="footer dark-background">
+    <div class="footer-main">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-widget footer-about">
+              <a href="index.html" class="logo">
+                <span class="sitename">إيجارك</span>
+              </a>
+              <p>منصة إيجارك هي الحل الأمثل لتأجير كل ما تحتاجه أو كسب المال من تأجير ممتلكاتك. نوفر تجربة آمنة وسهلة للجميع.</p>
+
+              <div class="social-links mt-4">
+                <h5>تواصل معنا</h5>
+                <div class="social-icons">
+                  <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="#" aria-label="Snapchat"><i class="bi bi-snapchat"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 col-sm-6">
+            <div class="footer-widget">
+              <h4>تصفح</h4>
+              <ul class="footer-links">
+                <li><a href="category.html">السيارات</a></li>
+                <li><a href="category.html">الشقق والسكن</a></li>
+                <li><a href="category.html">الملابس</a></li>
+                <li><a href="category.html">الأدوات</a></li>
+                <li><a href="category.html">الأثاث</a></li>
+                <li><a href="category.html">عروض خاصة</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 col-sm-6">
+            <div class="footer-widget">
+              <h4>الدعم</h4>
+              <ul class="footer-links">
+                <li><a href="support.html">الأسئلة الشائعة</a></li>
+                <li><a href="account.html">حجوزاتي</a></li>
+                <li><a href="shiping-info.html">شروط التأجير</a></li>
+                <li><a href="return-policy.html">سياسة الإرجاع</a></li>
+                <li><a href="#">الأسعار</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-widget">
+              <h4>معلومات الاتصال</h4>
+              <div class="footer-contact">
+                <div class="contact-item">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>المملكة العربية السعودية</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-telephone"></i>
+                  <span>+966 12 345 6789</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-envelope"></i>
+                  <span>info@ijarak.com</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-clock"></i>
+                  <span>الأحد-الخميس: 8ص-5م<br>الجمعة-السبت: مغلق</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row gy-3 align-items-center">
+          <div class="col-lg-6 col-md-12">
+            <div class="copyright">
+              <p>© <span>حقوق النشر</span> <strong class="sitename">إيجارك</strong>. جميع الحقوق محفوظة.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-12">
+            <div class="d-flex flex-wrap justify-content-lg-end justify-content-center align-items-center gap-4">
+              <div class="payment-methods">
+                <div class="payment-icons">
+                  <i class="bi bi-credit-card" aria-label="Credit Card"></i>
+                  <i class="bi bi-paypal" aria-label="PayPal"></i>
+                  <i class="bi bi-apple" aria-label="Apple Pay"></i>
+                  <i class="bi bi-google" aria-label="Google Pay"></i>
+                  <i class="bi bi-cash" aria-label="Cash on Delivery"></i>
+                </div>
+              </div>
+
+              <div class="legal-links">
+                <a href="tos.html">الشروط</a>
+                <a href="privacy.html">الخصوصية</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // الحصول على بيانات الطلب من الـ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const requestId = urlParams.get('id');
+            
+            // هنا يجب جلب بيانات الطلب من الخادم باستخدام الـ ID
+            // سنستخدم بيانات وهمية للتوضيح
+            const mockRequests = {
+                "1": {
+                    title: "كاميرا كانون",
+                    description: "كاميرا احترافية للتصوير الفوتوغرافي مع عدستين إضافيتين",
+                    location: "القاهرة",
+                    period: "7 أيام",
+                    comments: [
+                        { author: "محمد علي", date: "16/03/2023", text: "هل تتوفر الكاميرا الأسبوع القادم؟" },
+                        { author: "أحمد محمد", date: "16/03/2023", text: "نعم متوفرة من يوم الأحد إلى الجمعة" }
+                    ]
+                }
+                // يمكن إضافة المزيد من الطلبات هنا
+            };
+            
+            const request = mockRequests[requestId] || mockRequests["1"];
+            
+            // عرض بيانات الطلب
+            document.getElementById('request-title').textContent = request.title;
+            document.getElementById('request-description').textContent = request.description;
+            document.getElementById('request-location').innerHTML = `<i class="bi bi-geo-alt"></i> ${request.location}`;
+            document.getElementById('request-period').textContent = `المدة: ${request.period}`;
+            
+            // عرض التعليقات
+            const commentsContainer = document.getElementById('comments-container');
+            if (request.comments && request.comments.length > 0) {
+                commentsContainer.innerHTML = request.comments.map(comment => `
+                    <div class="comment">
+                        <div class="d-flex justify-content-between">
+                            <strong>${comment.author}</strong>
+                            <small class="text-muted">${comment.date}</small>
+                        </div>
+                        <p class="mb-0">${comment.text}</p>
+                    </div>
+                `).join('');
+            } else {
+                commentsContainer.innerHTML = '<p class="text-muted">لا توجد تعليقات بعد</p>';
+            }
+            
+            // إضافة تعليق جديد
+            document.getElementById('comment-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const commentText = document.getElementById('comment-input').value.trim();
+                
+                if (commentText) {
+                    const now = new Date();
+                    const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+                    
+                    const newComment = document.createElement('div');
+                    newComment.className = 'comment';
+                    newComment.innerHTML = `
+                        <div class="d-flex justify-content-between">
+                            <strong>أنت</strong>
+                            <small class="text-muted">${dateStr}</small>
+                        </div>
+                        <p class="mb-0">${commentText}</p>
+                    `;
+                    
+                    const noCommentsMsg = commentsContainer.querySelector('.text-muted');
+                    if (noCommentsMsg) noCommentsMsg.remove();
+                    
+                    commentsContainer.prepend(newComment);
+                    document.getElementById('comment-input').value = '';
+                    
+                    // هنا يجب إرسال التعليق إلى الخادم وحفظه
+                }
+            });
+        });
+  
+
+  document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('comment-form');
+  const commentsContainer = document.getElementById('comments-container');
+  const commentInput = document.getElementById('comment-input');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const commentText = commentInput.value.trim(); // ← ADD THIS
+
+    const phonePatterns = [
+      /\+?\d[\d\s\-()]{7,}/, // أرقام مع كود دولة أو شرطات أو مسافات
+      /[٠-٩]{8,}/, // أرقام عربية (٠١٢...)
+      /(zero|one|two|three|four|five|six|seven|eight|nine)/i, // كتابة إنجليزي
+      /(صفر|واحد|اثنين|ثلاثة|اربعة|أربعة|خمسة|ستة|سبعة|ثمانية|تسعة)/ // كتابة عربي
+    ];
+
+    const hasPhone = phonePatterns.some(pattern => pattern.test(commentText));
+
+    if (hasPhone) {
+      Toastify({
+        text: "🚫 يمنع إدخال أرقام الهواتف في التعليقات.",
+        duration: 4000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "linear-gradient(135deg, #ff416c, #ff4b2b)",
+        stopOnFocus: true
+      }).showToast();
+
+      commentInput.focus();
+      return;
+    }
+
+    if (commentText) {
+      const now = new Date();
+      const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+
+      const newComment = document.createElement('div');
+      newComment.className = 'comment';
+      newComment.innerHTML = `
+        <div class="d-flex justify-content-between">
+          <strong>أنت</strong>
+          <small class="text-muted">${dateStr}</small>
+        </div>
+        <p class="mb-0">${commentText}</p>
+      `;
+
+      const noCommentsMsg = commentsContainer.querySelector('.text-muted');
+      if (noCommentsMsg) noCommentsMsg.remove();
+
+      commentsContainer.prepend(newComment);
+      commentInput.value = '';
+    }
+  });
+});
+
+
+</script>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/drift-zoom/drift-basic.js"></script>
+
+  <!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

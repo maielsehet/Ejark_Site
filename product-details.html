@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج - إيجارك</title>
+   <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- alerting message library-->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/drift-zoom/drift-basic.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+
+
+/* Enhanced Product Gallery */
+    .product-gallery {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(var(--primary), 0.1);
+      transition: transform 0.3s ease;
+      height: 100%; /* Make gallery same height as details card */
+    }
+
+    .product-gallery:hover {
+      transform: translateY(-5px);
+    }
+
+
+
+.main-image {
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  height: 400px; /* Fixed height for consistency */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  position: relative;
+    
+
+}
+
+.main-image img {
+  max-height: 1000px;
+  width: 100%;
+  transform: scale(1.5);
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+  cursor: zoom-in;
+  box-shadow:var(--primary) ;  
+
+}
+
+.main-image img:hover {
+  transform: scale(1.55);
+}
+
+
+.thumbnails {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+
+  overflow-x: auto;
+ padding-bottom: 10px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+    
+  min-width: 80px; /* Prevent shrinking */    
+   background: var(--accent);
+}
+
+.thumbnail:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 10px var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary), 0.2);
+}
+
+ .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+.product-info {
+  background: linear-gradient(145deg, #ffffff, #f9fbfd);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px var(--secondary);
+}
+
+
+.product-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+
+.product-price .price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff5722;
+}
+
+
+
+
+.rent-action .btn {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--primary), #0056b3);
+  color: #fff;
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.rent-action .btn:hover {
+  background: linear-gradient(90deg, #0056b3, var(--primary));
+  transform: scale(1.05);
+}
+
+/* Stylish underline directly under the title text */
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+
+  color: #333;
+  margin-bottom: 15px;
+  display: inline-block; /* so the underline matches text width */
+  position: relative;
+  padding-bottom: 5px;
+}
+
+
+
+/* Optional hover animation for more attraction */
+.section-title:hover::after {
+  width: 110%;
+}
+
+  
+    /* Price Highlight */
+    .product-price {
+      background: rgba(255, 235, 59, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px dashed var(--primary);
+    }
+
+    .product-price .price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    /* Special Offer Badge */
+    .special-offer {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-right: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Countdown Timer */
+  
+  
+
+</style>
+
+</head>
+<body class="index-page">
+
+  <header id="header" class="header sticky-top" >
+    <!-- Top Bar -->
+    <div class="main-header">
+      <div class="container-fluid container-xl">
+        <div class="d-flex py-3 align-items-center justify-content-between">
+
+       <!-- Logo -->
+      <!-- <a href="index.html" class="logo d-flex align-items-center"> -->
+       
+        <img src="assets/img/logo1.png" alt="شعار الموقع" style="width: 150px; height: auto;">
+      
+       <!-- </a> -->
+
+          <!-- Search -->
+          <form class="search-form desktop-search-form">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="ابحث عن ما تريد تأجيره...">
+              <button class="btn" type="submit">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+
+          <!-- Actions -->
+          <div class="header-actions d-flex align-items-center justify-content-end">
+
+            <!-- Mobile Search Toggle -->
+            <button class="header-action-btn mobile-search-toggle d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSearch" aria-expanded="false" aria-controls="mobileSearch">
+              <i class="bi bi-search"></i>
+            </button>
+
+            <!-- Account -->
+            <div class="dropdown account-dropdown">
+              <button class="header-action-btn" data-bs-toggle="dropdown">
+                <i class="bi bi-person"></i>
+              </button>
+              <div class="dropdown-menu">
+                <div class="dropdown-header">
+                  <h6>مرحبًا بك في <span class="sitename">إيجارك</span></h6>
+                  <p class="mb-0">إدارة الحساب والطلبات</p>
+                </div>
+                <div class="dropdown-body">
+                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                    <i class="bi bi-person-circle me-2"></i>
+                    <span>ملفي الشخصي</span>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                    <i class="bi bi-bag-check me-2"></i>
+                    <span>لوحة التحكم</span>
+                  </a>
+                </div>
+                <div class="dropdown-footer">
+                  <a href="login.html" class="btn btn-primary w-100 mb-2">تسجيل الدخول</a>
+                  <a href="register.html" class="btn btn-outline-primary w-100">إنشاء حساب</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Navigation Toggle -->
+            <i class="mobile-nav-toggle d-xl-none bi bi-list me-0"></i>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="header-nav">
+      <div class="container-fluid container-xl position-relative">
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html" class="active">الرئيسية</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <!-- <li><a href="partener.html">شركاؤنا</a></li> -->
+            <li ><a href="category.html"><span>الفئات</span> </a>
+              <li><a href="needs.html"><span>طلبات العملاء</span></a></li>
+             
+           
+            <li><a href="contact.html">اتصل بنا</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Mobile Search Form -->
+    <div class="collapse" id="mobileSearch">
+      <div class="container">
+        <form class="search-form">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="ابحث عن ما تريد تأجيره...">
+            <button class="btn" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </header>
+
+   <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">تفاصيل المنتج</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li class="current">تفاصيل المنتج</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+      <div class="row">
+        <!-- Product Images -->
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="product-gallery">
+            <!-- Main Image -->
+            <div class="main-image mb-3">
+              <img src="assets/img/product/car.png" class="img-fluid rounded" alt="صورة المنتج الرئيسية" id="mainProductImage">
+            </div>
+            
+            <!-- Thumbnails -->
+            <div class="thumbnails d-flex flex-wrap gap-2">
+              <div class="thumbnail active">
+                <img src="assets/img/product/house.jpg" class="card-img-top" alt="صورة مصغرة 1" onclick="changeMainImage(this)">
+              </div>
+              <div class="thumbnail">
+                <img src="assets/img/product/car.png" class="card-img-top" alt="صورة مصغرة 2" onclick="changeMainImage(this)">
+              </div>
+              <div class="thumbnail">
+                <img src="assets/img/product/car.png" class="card-img-top" alt="صورة مصغرة 3" onclick="changeMainImage(this)">
+              </div>
+              <div class="thumbnail">
+                <img src="assets/img/product/car.png" class="card-img-top" alt="صورة مصغرة 4" onclick="changeMainImage(this)">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="product-info">
+            <h1 class="product-title mb-3" data-aos="fade-up">تويوتا كورولا</h1>
+            
+            <!-- Rating -->
+            <div class="product-rating mb-3">
+              <div class="stars">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-half text-warning"></i>
+                <span class="rating-value ms-2" data-aos="fade-up">4.5</span>
+                <span class="reviews-count"data-aos="fade-up">(24 تقييم)</span>
+              </div>
+            </div>
+            
+            <!-- Price -->
+            <div class="product-price mb-4">
+              <h3 class="price">150 جينه مصري لليوم</h3>
+              
+            </div>
+
+
+            
+            <!-- Location -->
+            <div class="product-location mb-4">
+              <h5 class="section-title" data-aos="fade-up">الموقع</h5>
+              <div class="location d-flex align-items-center">
+                <i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+                <span data-aos="fade-up">القاهرة</span>
+              </div>
+            </div>
+            
+          
+            <!-- Description -->
+            <div class="product-description mb-4">
+              <h5 class="section-title">الوصف</h5>
+              <p class="description-text">
+             <li data-aos="fade-up"> ناقل حركة أوتوماتيك</li>    
+
+             <li data-aos="fade-up"> مكيف هواء بارد</li> 
+
+            <li data-aos="fade-up">استهلاك بنزين اقتصادي جدًا</li> 
+
+             <li data-aos="fade-up">حالة ممتازة، صيانة دورية</li> 
+
+            <li data-aos="fade-up">متاحة للإيجار اليومي أو الأسبوعي</li>
+              </p>
+            </div>
+            
+            <!-- Rent Button -->
+            <div class="rent-action">
+              <a id="whatsappLink" 
+                 class="btn btn-primary btn-lg w-100 py-3" 
+                 target="_blank">
+                <i class="bi bi-whatsapp me-2"></i> أجر الآن عبر واتساب
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info Tabs -->
+      <div class="row mt-5" data-aos="fade-up">
+        <div class="col-12">
+          <div class="product-tabs">
+            <ul class="nav nav-tabs" id="productTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab">تفاصيل أكثر</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">التقييمات (5)</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab">أسئلة شائعة</button>
+              </li>
+            </ul>
+            <div class="tab-content p-3 border border-top-0 rounded-bottom" id="productTabsContent">
+              <div class="tab-pane fade show active" id="details" role="tabpanel">
+                <h5>مواصفات إضافية</h5>
+                <p>هنا يمكنك إضافة المزيد من التفاصيل حول المنتج، مثل تاريخ الشراء، شروط الاستخدام، أي ملحقات إضافية تأتي مع المنتج، وغيرها من المعلومات التي قد يحتاجها المستأجر.</p>
+                <ul>
+               
+                
+                  <li>متاح للاستلام الشخصي</li>
+                  <li>يجب إرجاع المنتج بنفس الحالة</li>
+                </ul>
+              </div>
+              <div class="tab-pane fade" id="reviews" role="tabpanel">
+                <div class="review-item mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                    <div class="reviewer-info">
+                      <strong>محمد أحمد</strong>
+                      <div class="stars">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                      </div>
+                    </div>
+                    <span class="text-muted">منذ أسبوع</span>
+                  </div>
+                  <p>تجربة رائعة، المنتج كان كما هو موصوف تماماً والتسليم كان في الموعد المحدد. شكراً لكم!</p>
+                </div>
+                <div class="review-item mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                    <div class="reviewer-info">
+                      <strong>سارة خالد</strong>
+                      <div class="stars">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star text-warning"></i>
+                      </div>
+                    </div>
+                    <span class="text-muted">منذ 3 أسابيع</span>
+                  </div>
+                  <p>جيد جداً ولكن كان هناك تأخير بسيط في التسليم. بخلاف ذلك كل شيء كان ممتازاً.</p>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="faq" role="tabpanel">
+                <div class="accordion" id="faqAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        ما هي مدة التأجير المتاحة؟
+                      </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">
+                        يمكنك تأجير المنتج لمدة يوم، أسبوع أو شهر حسب احتياجك. الأسعار تختلف حسب مدة التأجير.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        هل يوجد ضمان على المنتج؟
+                      </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">
+                        نعم، جميع منتجاتنا مؤمنة ضد الأعطال غير الناتجة عن سوء الاستخدام. في حال حدوث أي عطل، يرجى التواصل معنا فوراً.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="footer-main">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="footer-widget footer-about">
+              <a href="index.html" class="logo">
+                <span class="sitename">إيجارك</span>
+              </a>
+              <p>منصة إيجارك هي الحل الأمثل لتأجير كل ما تحتاجه أو كسب المال من تأجير ممتلكاتك. نوفر تجربة آمنة وسهلة للجميع.</p>
+
+              <div class="social-links mt-4">
+                <h5>تواصل معنا</h5>
+                <div class="social-icons">
+                  <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="#" aria-label="Snapchat"><i class="bi bi-snapchat"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="footer-widget">
+              <h4>تصفح</h4>
+              <ul class="footer-links">
+                <li><a href="category.html">السيارات</a></li>
+                <li><a href="category.html">الشقق والسكن</a></li>
+                <li><a href="category.html">الملابس</a></li>
+                <li><a href="category.html">الأدوات</a></li>
+                <li><a href="category.html">الأثاث</a></li>
+                <li><a href="category.html">عروض خاصة</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="footer-widget">
+              <h4>معلومات الاتصال</h4>
+              <div class="footer-contact">
+                <div class="contact-item">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>القاهرة - جمهورية مصر العربية</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-telephone"></i>
+                  <span> +966 12 345 6789</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-envelope"></i>
+                  <span> info@ijarak.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row gy-3 align-items-center">
+          <div class="col-lg-6 col-md-12" data-aos="fade-up">
+            <div class="copyright">
+              <p>© <span>حقوق النشر</span> <strong class="sitename">إيجارك</strong>. جميع الحقوق محفوظة.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="100">
+            <div class="d-flex flex-wrap justify-content-lg-end justify-content-center align-items-center gap-4">
+              <div class="payment-methods">
+                <div class="payment-icons">
+                  <i class="bi bi-credit-card" aria-label="Credit Card"></i>
+                  <i class="bi bi-paypal" aria-label="PayPal"></i>
+                  <i class="bi bi-apple" aria-label="Apple Pay"></i>
+                  <i class="bi bi-google" aria-label="Google Pay"></i>
+                  <i class="bi bi-cash" aria-label="Cash on Delivery"></i>
+                </div>
+              </div>
+
+              <div class="legal-links">
+                <a href="tos.html">الشروط</a>
+                <a href="privacy.html">الخصوصية</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+   function changeMainImage(clickedImage) {
+  // غير الصورة الكبيرة
+  document.getElementById('mainProductImage').src = clickedImage.src;
+  
+  // شيل الـ active من كل الصور المصغرة
+  document.querySelectorAll('.thumbnail').forEach(thumb => {
+    thumb.classList.remove('active');
+  });
+
+  // ضيف الـ active للصورة اللي اتضغطت
+  clickedImage.parentElement.classList.add('active');
+}
+
+
+   
+    </script>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+<!-- AOS Initialization -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out'
+  });
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // رابط الـ API
+  const apiUrl = "https://example.com/api/product/123";
+
+  // جلب البيانات من الـ API
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      // تحديث عنوان المنتج
+      document.querySelector(".product-title").textContent = data.title;
+
+      // تحديث السعر
+      document.querySelector(".product-price .price").textContent = data.price;
+
+      // تحديث الموقع
+      document.querySelector(".product-location span").textContent = data.location;
+
+      // تحديث الوصف
+      const descriptionElement = document.querySelector(".description-text");
+      descriptionElement.innerHTML = ""; // مسح القديم
+      data.description.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        descriptionElement.appendChild(li);
+      });
+
+      // تحديث الصور
+      const mainImage = document.getElementById("mainProductImage");
+      mainImage.src = data.images[0]; // أول صورة للصورة الرئيسية
+
+      const thumbnailsContainer = document.querySelector(".thumbnails");
+      thumbnailsContainer.innerHTML = ""; // مسح القديم
+      data.images.forEach((imgSrc, index) => {
+        const thumbDiv = document.createElement("div");
+        thumbDiv.classList.add("thumbnail");
+        if (index === 0) thumbDiv.classList.add("active");
+
+        const img = document.createElement("img");
+        img.src = imgSrc;
+        img.classList.add("card-img-top");
+        img.onclick = function() { changeMainImage(img); };
+
+        thumbDiv.appendChild(img);
+        thumbnailsContainer.appendChild(thumbDiv);
+      });
+    })
+    .catch(error => {
+      console.error("حدث خطأ في جلب البيانات:", error);
+    });
+});
+</script>
+
+
+
+<!-- زرار الواتساب -->
+<a id="whatsappLink" target="_blank" class="btn btn-success">
+  أجر عبر الواتساب
+</a>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const whatsappNumber = "201127091388"; // رقم ثابت
+    const message = encodeURIComponent("أنا مهتم بتأجير سيارة تويوتا كورولا");
+
+    document.getElementById('whatsappLink').href =
+     " https://wa.me/${whatsappNumber}?text=${message}";
+  });
+</script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+</body>
+</html>
