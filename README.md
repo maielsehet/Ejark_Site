@@ -78,4 +78,4 @@ The system allows users to log in as either Individual or Company, browse produc
 
 1. Clone the repository:
    `bash
-   git clone https://github.com/your-username/igarak.git
+   git clone https://maielsehet.github.io/Ejark_Site/
